@@ -1,4 +1,8 @@
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button } from "reactstrap";
+import { RxCross1 } from "react-icons/rx";
+import { BiCircle } from "react-icons/bi";
 import { useEffect, useState } from "react";
 
 export const App = () => {
@@ -31,15 +35,15 @@ export const App = () => {
     [0, 4, 8],
     [2, 4, 6],
   ];
+
   function forLongCombination(arr1, arr2) {
     let counter = 0;
     for (let i of arr2) {
-      if (arr1.includes(i)) {
-        counter++;
-      }
+      if (arr1.includes(i)) counter++;
     }
     return counter === 3 ? true : false;
   }
+
   useEffect(() => {
     for (let i of results) {
       if (forLongCombination(i, dataForO.sort())) {
@@ -50,32 +54,42 @@ export const App = () => {
       }
     }
   }, [dataForO, dataForX]);
+
   console.log(dataForO, "OOOOOOOOOO");
   console.log(dataForX, "XXXXXXXX");
   console.log(cells, "cells");
+
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-4">
-          ​
-          {cells.map((cell) => {
-            return (
-              <div
-                className="cell"
-                style={{
-                  color: typeof cell === "number" ? "white" : "",
-                  pointerEvents: typeof cell !== "number" ? "none" : "",
-                }}
-                onClick={() => handleClick(cell)}
-              >
-                {cell}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      <div className="row">
-        <div className="col h1">Winner is: {winner}</div>
+      <div className="wrapper">
+        {cells.map((cell) => {
+          return (
+            <div
+              className="cell"
+              style={{
+                color: typeof cell === "number" ? "white" : "",
+                pointerEvents: typeof cell !== "number" ? "none" : "",
+              }}
+              onClick={() => handleClick(cell)}
+            >
+              {cell === "X" ? <RxCross1 /> : <BiCircle />}
+            </div>
+          );
+        })}
+        <h1 className="winner">{winner}</h1>
+        {/* {winner && <h1 className="winner">{winner}</h1>} */}
+        <Button
+          outline
+          size="lg"
+          onClick={() => {
+            setCells([...Array(9).keys()]);
+            setWinner("");
+            setDataForX([]);
+            setDataForO([]);
+          }}
+        >
+          Reset
+        </Button>
       </div>
     </div>
   );
