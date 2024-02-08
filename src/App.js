@@ -60,37 +60,38 @@ export const App = () => {
   console.log(cells, "cells");
 
   return (
-    <div className="container">
-      <div className="wrapper">
-        {cells.map((cell) => {
-          return (
-            <div
-              className="cell"
-              style={{
-                color: typeof cell === "number" ? "white" : "",
-                pointerEvents: typeof cell !== "number" ? "none" : "",
-              }}
-              onClick={() => handleClick(cell)}
-            >
-              {cell === "X" ? <RxCross1 /> : <BiCircle />}
-            </div>
-          );
-        })}
-        <h1 className="winner">{winner}</h1>
-        {/* {winner && <h1 className="winner">{winner}</h1>} */}
-        <Button
-          outline
-          size="lg"
-          onClick={() => {
-            setCells([...Array(9).keys()]);
-            setWinner("");
-            setDataForX([]);
-            setDataForO([]);
-          }}
-        >
-          Reset
-        </Button>
-      </div>
+    <div className="wrapper">
+      {cells.map((cell) => {
+        return (
+          <div
+            className="cell"
+            style={{
+              color: typeof cell === "number" ? "white" : "",
+              pointerEvents: typeof cell !== "number" ? "none" : "",
+            }}
+            onClick={() => handleClick(cell)}
+          >
+            {cell === "X" ? <RxCross1 /> : <BiCircle />}
+          </div>
+        );
+      })}
+
+      <Button
+        outline
+        size="lg"
+        style={{ margin: "2rem" }}
+        onClick={() => {
+          setCells([...Array(9).keys()]);
+          setWinner("");
+          setDataForX([]);
+          setDataForO([]);
+        }}
+      >
+        Reset
+      </Button>
+
+      {/* <h1 className="winner">{winner}</h1> */}
+      {winner && <h5 className="winner">Winner: {winner}</h5>}
     </div>
   );
 };

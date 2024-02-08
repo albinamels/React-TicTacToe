@@ -5,15 +5,15 @@
 }
 .wrapper {
   width: 400px;
-  margin: 100px auto;
+  margin: 200px auto;
   text-align: center;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 .cell {
   display: flex;
   width: 120px;
   height: 120px;
-  margin: 1px;
+  margin: 5px;
   border: 3px solid gray;
   border-radius: 15px;
   display: inline-block;
