@@ -53,7 +53,7 @@ export const App = () => {
         setWinner("X");
       }
     }
-  }, [dataForO, dataForX]);
+  }, [dataForO, dataForX, results]);
 
   console.log(dataForO, "OOOOOOOOOO");
   console.log(dataForX, "XXXXXXXX");
@@ -91,7 +91,7 @@ export const App = () => {
       </Button>
 
       {/* <h1 className="winner">{winner}</h1> */}
-      {winner && <h5 className="winner">Winner: {winner}</h5>}
+      {winner && <h5 className="winner">Winner - {winner}</h5>}
     </div>
   );
 };
